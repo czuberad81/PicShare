@@ -62,23 +62,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(color: Colors.transparent,height: 75),
                   Image(image: AssetImage('assets/logo_picshare.png'),height: 300,width: 300),
                   Container(color: Colors.transparent,height: 50),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(onPressed: (){
+                      RaisedButton(onPressed: (){
                         Navigator.push(context, MaterialPageRoute(
                             builder: (context) => signupPage()));
                       },
+                          color: Colors.deepOrangeAccent,
                           child: Text("SIGNUP",style: TextStyle(color: Colors.white,fontSize: 20))
                       ),
-                      OutlineButton(onPressed: (){
+                      Container(color: Colors.transparent,width: 10),
+                      RaisedButton(onPressed: (){
                         Navigator.push(context, MaterialPageRoute(
                             builder: (context) => loginPage()));
                       },
+                          color: Colors.deepOrangeAccent,
                           child: Text("LOGIN",style: TextStyle(color: Colors.white,fontSize: 20))
                       ),
-                    ],
-                  )
                 ],
               ),
             )
