@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "633816848252",
+    "project_id": "picshare-f9609",
+    "storage_bucket": "picshare-f9609.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:633816848252:android:a637d6452b4d0f709436f9",
+        "android_client_info": {
+          "package_name": "com.example.mobile_final_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "633816848252-l7ia6s3hs16n3l7v9jdk5s38budkrq4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd8we1gmioUxk6v7vBSBDThOysmnjQd8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "633816848252-l7ia6s3hs16n3l7v9jdk5s38budkrq4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
