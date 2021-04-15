@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:mobile_final_project/Views/home.dart';
 // ignore: camel_case_types
 class loginPage extends StatelessWidget{
   @override
@@ -74,6 +74,8 @@ class loginPage extends StatelessWidget{
                   Flexible(
                       child:RaisedButton(
                     onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => MyHomePage1()));
                     },
                         color: Colors.deepOrangeAccent,
                     child: Text("LOGIN",style: TextStyle(color: Colors.white,fontSize: 20)),
