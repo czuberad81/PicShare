@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mobile_final_project/Styles/map.dart';
+import 'package:mobile_final_project/Views/home.dart';
 
 
 class MyHomePage1 extends StatefulWidget {
@@ -30,11 +32,15 @@ class _MyHomePage1State extends State<MyHomePage1> {
     return Scaffold(
       body: Stack(
         children: [
-          _map(context)
+          _map(context),
+          _account()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _cIndex,
+        selectedItemColor: Colors.deepOrangeAccent,
+        unselectedItemColor: Colors.deepOrange.shade200,
+        backgroundColor: Colors.blueGrey.shade900,
         items:[
           BottomNavigationBarItem(icon: Icon(Icons.add_a_photo_outlined),title: Text('Take Picture')),
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
@@ -48,18 +54,29 @@ class _MyHomePage1State extends State<MyHomePage1> {
       ),
     );
   }
+  Widget _account(){
+    return Align(
+      alignment: FractionalOffset(0.0,0.05),
+      child: IconButton(
+        icon: Icon(Icons.account_circle_outlined,color: Colors.deepOrangeAccent,size: 30),
+      )
+    );
+  }
+  Widget _map(BuildContext context){
+    Completer<GoogleMapController> _completer = Completer();
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: GoogleMap(
+        mapType: MapType.terrain,
+        initialCameraPosition: CameraPosition(target:LatLng(43.661904723121374, -79.38172442298045),zoom: 10),
+        onMapCreated: (GoogleMapController controller){
+          controller.setMapStyle(mapS.sytleMap);
+          _completer.complete(controller);
+
+        },
+      ),
+    );
+  }
 }
-Widget _map(BuildContext context){
-  Completer<GoogleMapController> _completer = Completer();
-  return Container(
-    height: MediaQuery.of(context).size.height,
-    width: MediaQuery.of(context).size.width,
-    child: GoogleMap(
-      mapType: MapType.terrain,
-      initialCameraPosition: CameraPosition(target:LatLng(43.661904723121374, -79.38172442298045),zoom: 10),
-      onMapCreated: (GoogleMapController controller){
-        _completer.complete(controller);
-      },
-    ),
-  );
-}
+
