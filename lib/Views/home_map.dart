@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_final_project/Styles/map.dart';
-
+import 'package:mobile_final_project/Views/account.dart';
 
 
 class MyHomePage2 extends StatefulWidget {
@@ -35,6 +35,10 @@ class _MyHomePage2State extends State<MyHomePage2> {
         alignment: FractionalOffset(0.0,0.05),
         child: IconButton(
           icon: Icon(Icons.account_circle_outlined,color: Colors.deepOrangeAccent,size: 30),
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => MyHomePage3()));
+          },
         )
     );
   }

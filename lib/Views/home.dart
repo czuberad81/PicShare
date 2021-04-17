@@ -25,13 +25,13 @@ class MyHomePage1 extends StatefulWidget {
 }
 
 class _MyHomePage1State extends State<MyHomePage1> {
-
+  int _cIndex = 1;
   final _optionW = [
     Center(child: Text('Camera')),
     MyHomePage2(),
     Center(child: Text('Friends'))
   ];
-  int _cIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
