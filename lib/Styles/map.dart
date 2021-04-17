@@ -1,7 +1,7 @@
 
 // ignore: camel_case_types
 class mapS{
-  static String sytleMap = '''[
+  static String styleMap = '''[
   {
     "elementType": "geometry",
     "stylers": [
@@ -23,15 +23,6 @@ class mapS{
     "stylers": [
       {
         "color": "#242f3e"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
@@ -130,15 +121,6 @@ class mapS{
     "stylers": [
       {
         "color": "#f3d19c"
-      }
-    ]
-  },
-  {
-    "featureType": "road.local",
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
       }
     ]
   },
