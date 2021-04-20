@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_final_project/Views/home_map.dart';
-
+import 'package:mobile_final_project/Views/home_camera.dart';
 
 
 class MyHomePage1 extends StatefulWidget {
@@ -27,7 +27,7 @@ class MyHomePage1 extends StatefulWidget {
 class _MyHomePage1State extends State<MyHomePage1> {
   int _cIndex = 1;
   final _optionW = [
-    Center(child: Text('Camera')),
+    MyHomePage4(),
     MyHomePage2(),
     Center(child: Text('Friends'))
   ];
