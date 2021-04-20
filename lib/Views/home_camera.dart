@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mobile_final_project/Views/home_map.dart';
+import 'package:mobile_final_project/Views/home.dart';
 
 
 
@@ -32,14 +32,20 @@ class _MyHomePage4State extends State<MyHomePage4> {
     if(image != null){
 
     }
-
+    else{
+    }
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child:
-          _cameraView(ImageSource.camera),
+      backgroundColor: Colors.blueGrey[900],
+      body: Center(
+        child: IconButton(
+          icon: Icon(Icons.add_photo_alternate_outlined,color: Colors.deepOrangeAccent,size: 60),
+          onPressed: (){
+            _cameraView(ImageSource.camera);
+          },
+        ),
       ),
 
     );
