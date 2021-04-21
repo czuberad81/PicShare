@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_final_project/Views/login.dart';
 import 'package:mobile_final_project/Views/signup.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -63,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(color: Colors.transparent,height: 50),
                       RaisedButton(onPressed: (){
                         Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => signupPage()));
+                            builder: (context) => MyHomePage5()));
                       },
                           color: Colors.deepOrangeAccent,
                           child: Text("SIGNUP",style: TextStyle(color: Colors.white,fontSize: 20))

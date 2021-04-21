@@ -24,6 +24,9 @@ dependencies:
   google_maps_flutter:
   image_cropper:
   image_picker:
+  cloud_firestore:
+  firebase_auth:
+  firebase_core:
   flutter:
     sdk: flutter
 

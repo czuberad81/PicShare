@@ -1,10 +1,186 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_final_project/Views/login.dart';
+import 'package:mobile_final_project/Views/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 // ignore: camel_case_types
-class signupPage extends StatelessWidget{
+// class signupPage extends StatelessWidget{
+//
+//   final _auth = FirebaseAuth.instance;
+//   String email,password;
+//   @override
+//   Widget build(BuildContext context){
+//     return new Scaffold(
+//       body: Container(
+//         color: Colors.black,
+//         child: Stack(
+//           children: [
+//             Positioned.fill(
+//               child: Opacity(
+//                 opacity: 0.8,
+//                 child: Image.asset(
+//                   'assets/signinBackground.jpg',
+//                   fit: BoxFit.cover,
+//                 ),
+//               ),
+//             ),
+//             Center(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.start,
+//                 children: [
+//                   Container(color: Colors.transparent,height: 50),
+//               Flexible(
+//               child: Container(
+//               margin: const EdgeInsets.all(10),
+//               child:TextFormField(
+//                 style: TextStyle(color: Colors.white),
+//                 decoration: InputDecoration(
+//                     hintStyle: TextStyle(color: Colors.white),
+//                     hintText: "Enter Firstname",
+//                     filled: true,
+//                     fillColor: Colors.black.withOpacity(0.3),
+//                     enabledBorder: OutlineInputBorder(
+//                         borderRadius: BorderRadius.circular(20),
+//                         borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//                     ),
+//                     focusedBorder: OutlineInputBorder(
+//                         borderRadius: BorderRadius.circular(20),
+//                         borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//                     )
+//                 ),
+//               ) ,
+//             )
+//               ),
+//               Flexible(
+//               child: Container(
+//               margin: const EdgeInsets.all(10),
+//               child:TextField(
+//               style: TextStyle(color: Colors.white),
+//               decoration: InputDecoration(
+//               hintStyle: TextStyle(color: Colors.white),
+//               hintText: "Enter Lastname",
+//               filled: true,
+//                   fillColor: Colors.black.withOpacity(0.3),
+//               enabledBorder: OutlineInputBorder(
+//               borderRadius: BorderRadius.circular(20),
+//               borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//               ),
+//               focusedBorder: OutlineInputBorder(
+//               borderRadius: BorderRadius.circular(20),
+//               borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//
+//               )
+//
+//               ),
+//               ) ,
+//               )
+//               ),
+//               Flexible(
+//                 child:Container(
+//                   margin: const EdgeInsets.all(10),
+//                   child:TextFormField(
+//                     onChanged: (x){
+//                       email=x;
+//                     },
+//                     style: TextStyle(color: Colors.white),
+//                     decoration: InputDecoration(
+//                         hintStyle: TextStyle(color: Colors.white),
+//                         hintText: "Enter Email",
+//                         filled: true,
+//                         fillColor: Colors.black.withOpacity(0.3),
+//                         enabledBorder: OutlineInputBorder(
+//                             borderRadius: BorderRadius.circular(20),
+//                             borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//                         ),
+//                         focusedBorder: OutlineInputBorder(
+//                             borderRadius: BorderRadius.circular(20),
+//                             borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//
+//                         )
+//
+//                     ),
+//                   ) ,
+//                 )
+//               ),
+//               Flexible(
+//                 child:Container(
+//                   margin: const EdgeInsets.all(10),
+//                   child:TextFormField(
+//                     onChanged: (x){
+//                       password = x;
+//                     },
+//                     obscureText: true,
+//                     style: TextStyle(color: Colors.white),
+//                     decoration: InputDecoration(
+//                         hintStyle: TextStyle(color: Colors.white),
+//                         hintText: "Enter Password",
+//                         filled: true,
+//                         fillColor: Colors.black.withOpacity(0.3),
+//                         enabledBorder: OutlineInputBorder(
+//                             borderRadius: BorderRadius.circular(20),
+//                             borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//                         ),
+//                         focusedBorder: OutlineInputBorder(
+//                             borderRadius: BorderRadius.circular(20),
+//                             borderSide: BorderSide(color: Colors.deepOrangeAccent)
+//
+//                         )
+//
+//                     ),
+//                   ) ,
+//                 )
+//               ),
+//                   Container(color: Colors.transparent,height: 40),
+//                   Flexible(
+//                       child:RaisedButton(
+//                         onPressed: () async{
+//
+//                         },
+//                         color: Colors.deepOrangeAccent,
+//                         child: Text("SIGNUP",style: TextStyle(color: Colors.white,fontSize: 20)),
+//                         //color: Colors.black12,
+//                       ) ),
+//                   Container(color: Colors.transparent,height: 20),
+//                   InkWell(
+//                     onTap: (){
+//                       Navigator.push(context, MaterialPageRoute(
+//                           builder: (context) => loginPage()));
+//                     },
+//                     child: Text("Already have an account?, press here to login",style: TextStyle(color: Colors.white),),
+//                   )
+//                 ],
+//               ),
+//             ),
+//           ],
+//         )
+//       ),
+//     );
+//   }
+// }
+class MyHomePage5 extends StatefulWidget {
+  MyHomePage5({Key key, this.title}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+  final String title;
+
   @override
-  Widget build(BuildContext context){
+  _MyHomePage5State createState() => _MyHomePage5State();
+}
+
+class _MyHomePage5State extends State<MyHomePage5> {
+
+   final _auth = FirebaseAuth.instance;
+   String email,password;
+  @override
+  Widget build(BuildContext context) {
     return new Scaffold(
       body: Container(
         color: Colors.black,
@@ -27,7 +203,7 @@ class signupPage extends StatelessWidget{
               Flexible(
               child: Container(
               margin: const EdgeInsets.all(10),
-              child:TextField(
+              child:TextFormField(
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.white),
@@ -73,7 +249,10 @@ class signupPage extends StatelessWidget{
               Flexible(
                 child:Container(
                   margin: const EdgeInsets.all(10),
-                  child:TextField(
+                  child:TextFormField(
+                    onChanged: (x){
+                      email=x;
+                    },
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                         hintStyle: TextStyle(color: Colors.white),
@@ -97,7 +276,10 @@ class signupPage extends StatelessWidget{
               Flexible(
                 child:Container(
                   margin: const EdgeInsets.all(10),
-                  child:TextField(
+                  child:TextFormField(
+                    onChanged: (x){
+                      password = x;
+                    },
                     obscureText: true,
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -122,7 +304,16 @@ class signupPage extends StatelessWidget{
                   Container(color: Colors.transparent,height: 40),
                   Flexible(
                       child:RaisedButton(
-                        onPressed: (){
+                        onPressed: () async{
+                          try{
+                            final result = await _auth.createUserWithEmailAndPassword(email: email.toString().trim(), password: password.toString().trim());
+
+                            if(result != null){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage1()));
+                            }
+                          }catch(e){
+                            print('is Null');
+                          }
 
                         },
                         color: Colors.deepOrangeAccent,
