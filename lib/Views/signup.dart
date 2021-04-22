@@ -335,7 +335,7 @@ class _MyHomePage5State extends State<MyHomePage5> {
                   InkWell(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => loginPage()));
+                          builder: (context) => MyHomePage6()));
                     },
                     child: Text("Already have an account?, press here to login",style: TextStyle(color: Colors.white),),
                   )

@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Container(color: Colors.transparent,width: 10),
                       RaisedButton(onPressed: (){
                         Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => loginPage()));
+                            builder: (context) => MyHomePage6()));
                       },
                           color: Colors.deepOrangeAccent,
                           child: Text("LOGIN",style: TextStyle(color: Colors.white,fontSize: 20))
