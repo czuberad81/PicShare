@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_final_project/Styles/map.dart';
@@ -17,8 +19,7 @@ class MyHomePage2 extends StatefulWidget {
 }
 
 class _MyHomePage2State extends State<MyHomePage2> {
-
-  int _cIndex = 1;
+  File imageF;
 
   @override
   Widget build(BuildContext context) {
@@ -61,5 +62,14 @@ class _MyHomePage2State extends State<MyHomePage2> {
 
     );
   }
+
+  // Widget _displayImages(){
+  //   FirebaseFirestore.instance.collection("userPost").doc(widget.uid).collection('posts').doc(widget.uid).get().then((value){
+  //     setState(() {
+  //       imageF = value.data()["image"] as File;
+  //     });
+  //   });
+  //   return Image.file(imageF);
+  // }
 
 }
