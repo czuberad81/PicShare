@@ -179,6 +179,38 @@ class _MyHomePage5State extends State<MyHomePage5> {
 
    final _auth = FirebaseAuth.instance;
    String email,password,firstName,lastName;
+
+
+   _emailAlert(){
+     showDialog(context: context,
+         barrierDismissible: false,
+         builder: (BuildContext context) {
+           return AlertDialog(
+             title: Text("Unable to sign up"),
+             content: Text("email is already in use"),
+             actions: <Widget>[
+               FlatButton(onPressed: () => Navigator.of(context).pop(),
+                   child: Text("OK"))
+             ],
+           );
+         }
+     );
+   }
+   _signupAlert(){
+     showDialog(context: context,
+         barrierDismissible: false,
+         builder: (BuildContext context) {
+           return AlertDialog(
+             title: Text("Unable to signup"),
+             content: Text("Please fill in all information,password must be longer then 6 characters"),
+             actions: <Widget>[
+               FlatButton(onPressed: () => Navigator.of(context).pop(),
+                   child: Text("OK"))
+             ],
+           );
+         }
+     );
+   }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -300,7 +332,6 @@ class _MyHomePage5State extends State<MyHomePage5> {
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(color: Colors.deepOrangeAccent)
-
                         )
 
                     ),
@@ -311,20 +342,26 @@ class _MyHomePage5State extends State<MyHomePage5> {
                   Flexible(
                       child:RaisedButton(
                         onPressed: () async{
-                          try{
-                            final result = await _auth.createUserWithEmailAndPassword(email: email.toString().trim(), password: password.toString().trim());
-
-                            if(result != null){
-                              FirebaseFirestore.instance.collection("users").doc(result.user.uid).set({
-                                "email" : email,
-                                "firstName" : firstName,
-                                "lastName" : lastName
-                              });
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage1(uid: result.user.uid)));
-                            }
-                          }catch(e){
-                            print('is Null');
+                          if(email == null || password == null || firstName == null || lastName == null || password.length<6){
+                            _signupAlert();
                           }
+                          else{
+                            try{
+                              final result = await _auth.createUserWithEmailAndPassword(email: email.toString().trim(), password: password.toString().trim());
+
+                              if(result != null){
+                                FirebaseFirestore.instance.collection("users").doc(result.user.uid).set({
+                                  "email" : email,
+                                  "firstName" : firstName,
+                                  "lastName" : lastName
+                                });
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage1(uid: result.user.uid)));
+                              }
+                            }catch(e){
+                              _emailAlert();
+                            }
+                          }
+
 
                         },
                         color: Colors.deepOrangeAccent,
