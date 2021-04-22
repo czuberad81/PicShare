@@ -61,7 +61,7 @@ class _MyHomePage1State extends State<MyHomePage1> {
   }
  Widget _widget(){
     if(_cIndex == 0){
-      return MyHomePage4();
+      return MyHomePage4(uid:widget.uid);
     }
     else if(_cIndex == 1){
       return MyHomePage2(uid:widget.uid);

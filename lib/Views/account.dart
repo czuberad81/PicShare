@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -27,20 +28,27 @@ class MyHomePage3 extends StatefulWidget {
 }
 
 class _MyHomePage3State extends State<MyHomePage3> {
-
+    String tempFirst;
+    String tempLast;
+    String tempEmail;
     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
     _displayInfo(){
-      String tempFirst;
-      String tempLast;
-      String tempEmail;
-
       FirebaseFirestore.instance.collection("users").doc(widget.uid).get().then((value){
+        setState(() {
           tempFirst = value.data()["firstName"];
           tempLast = value.data()["lastName"];
           tempEmail = value.data()["email"];
+        });
       });
-      return Text(
-      tempFirst.toString()
+      return Container(
+        child: Column(
+          children: [
+            Text(tempFirst.toString(),style: TextStyle(color: Colors.white,fontSize: 20)),
+            Text(tempLast.toString(),style: TextStyle(color: Colors.white,fontSize: 20)),
+            Text(tempEmail.toString(),style: TextStyle(color: Colors.white,fontSize: 20))
+          ],
+        ),
+      //tempFirst.toString() + tempLast.toString() + tempEmail.toString()
     );
   }
   @override
@@ -65,19 +73,6 @@ class _MyHomePage3State extends State<MyHomePage3> {
             Container(
               child: _displayInfo(),
               ),
-            SizedBox(
-              width: 250,
-              child:  RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40)
-                  ),
-                  color: Colors.deepOrangeAccent,
-                  onPressed: () {
-
-                  },
-                  child: Text("Account Information",style: TextStyle(color: Colors.white))
-              ),
-            ),
             SizedBox(
               width: 250,
               child:  RaisedButton(

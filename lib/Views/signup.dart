@@ -320,6 +320,10 @@ class _MyHomePage5State extends State<MyHomePage5> {
                                 "firstName" : firstName,
                                 "lastName" : lastName
                               });
+                              FirebaseFirestore.instance.collection('userPosts').doc(result.user.uid).collection(result.user.uid).doc(result.user.uid).set(
+                                  {
+                                    "image": firstName
+                                  });
                               Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage1(uid: result.user.uid)));
                             }
                           }catch(e){
