@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_final_project/Views/login.dart';
 import 'package:mobile_final_project/Views/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: camel_case_types
 // class signupPage extends StatelessWidget{
 //
@@ -178,7 +178,7 @@ class MyHomePage5 extends StatefulWidget {
 class _MyHomePage5State extends State<MyHomePage5> {
 
    final _auth = FirebaseAuth.instance;
-   String email,password;
+   String email,password,firstName,lastName;
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -204,6 +204,9 @@ class _MyHomePage5State extends State<MyHomePage5> {
               child: Container(
               margin: const EdgeInsets.all(10),
               child:TextFormField(
+                onChanged: (x){
+                  firstName=x;
+                },
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.white),
@@ -225,7 +228,10 @@ class _MyHomePage5State extends State<MyHomePage5> {
               Flexible(
               child: Container(
               margin: const EdgeInsets.all(10),
-              child:TextField(
+              child:TextFormField(
+                onChanged: (x){
+                  lastName=x;
+                },
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
               hintStyle: TextStyle(color: Colors.white),
@@ -309,6 +315,11 @@ class _MyHomePage5State extends State<MyHomePage5> {
                             final result = await _auth.createUserWithEmailAndPassword(email: email.toString().trim(), password: password.toString().trim());
 
                             if(result != null){
+                              FirebaseFirestore.instance.collection("users").doc(result.user.uid).set({
+                                "email" : email,
+                                "firstName" : firstName,
+                                "lastName" : lastName
+                              });
                               Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage1()));
                             }
                           }catch(e){
