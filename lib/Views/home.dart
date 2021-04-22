@@ -7,7 +7,8 @@ import 'package:mobile_final_project/Views/home_camera.dart';
 
 
 class MyHomePage1 extends StatefulWidget {
-  MyHomePage1({Key key, this.title}) : super(key: key);
+  MyHomePage1({Key key, this.title,  this.uid}) : super(key: key);
+  String uid;
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -50,6 +51,7 @@ class _MyHomePage1State extends State<MyHomePage1> {
         ],
         onTap: (x){
           setState(() {
+            print(widget.uid);
             _cIndex = x;
           });
         },

@@ -320,7 +320,7 @@ class _MyHomePage5State extends State<MyHomePage5> {
                                 "firstName" : firstName,
                                 "lastName" : lastName
                               });
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage1()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage1(uid: result.user.uid)));
                             }
                           }catch(e){
                             print('is Null');

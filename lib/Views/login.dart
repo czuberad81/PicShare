@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_final_project/Views/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // ignore: camel_case_types
 class loginPage extends StatelessWidget{
+  final _auth = FirebaseAuth.instance;
+  String email,password;
   @override
   Widget build(BuildContext context){
     return new Scaffold(
@@ -27,7 +30,10 @@ class loginPage extends StatelessWidget{
                   Flexible(
                       child: Container(
                         margin: const EdgeInsets.all(10),
-                        child:TextField(
+                        child:TextFormField(
+                          onChanged: (x){
+                            email=x;
+                          },
                           style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
                               hintStyle: TextStyle(color: Colors.white),
@@ -50,7 +56,10 @@ class loginPage extends StatelessWidget{
                   Flexible(
                       child:Container(
                         margin: const EdgeInsets.all(10),
-                        child:TextField(
+                        child:TextFormField(
+                          onChanged: (x){
+                            password=x;
+                          },
                           obscureText: true,
                           style: TextStyle(color: Colors.white),
                           decoration: InputDecoration(
@@ -73,9 +82,16 @@ class loginPage extends StatelessWidget{
                       ),),
                   Flexible(
                       child:RaisedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => MyHomePage1()));
+                    onPressed: () async{
+                      try{
+                        final result = await _auth.signInWithEmailAndPassword(email: email.toString().trim(), password: password.toString().trim());
+                        if(result != null){
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => MyHomePage1(uid: result.user.uid)));
+                        }
+                      }catch(e){
+
+                      }
                     },
                         color: Colors.deepOrangeAccent,
                     child: Text("LOGIN",style: TextStyle(color: Colors.white,fontSize: 20)),
