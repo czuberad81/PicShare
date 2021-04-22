@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_final_project/Views/home_map.dart';
+import 'package:mobile_final_project/Views/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -31,7 +33,10 @@ class _MyHomePage3State extends State<MyHomePage3> {
     String tempFirst;
     String tempLast;
     String tempEmail;
+    final _auth = FirebaseAuth.instance;
     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final CollectionReference userC = FirebaseFirestore.instance.collection('users');
+    final CollectionReference userI = FirebaseFirestore.instance.collection('userPosts');
     _displayInfo(){
       FirebaseFirestore.instance.collection("users").doc(widget.uid).get().then((value){
         setState(() {
@@ -80,7 +85,10 @@ class _MyHomePage3State extends State<MyHomePage3> {
                       borderRadius: BorderRadius.circular(40)
                   ),
                   color: Colors.deepOrangeAccent,
-                  onPressed: () {  },
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => MyHomePage()));
+                  },
                   child: Text("Logout",style: TextStyle(color: Colors.white))
               ),
             ),
@@ -91,10 +99,19 @@ class _MyHomePage3State extends State<MyHomePage3> {
                       borderRadius: BorderRadius.circular(40)
                   ),
                   color: Colors.deepOrangeAccent,
-                  onPressed: () {
-                    FirebaseFirestore.instance.collection("users").doc(widget.uid).get().then((value){
-                      print(value.data()["firstName"]);
-                    });
+                  onPressed: () async{
+                    try{
+                      final result = await _auth.currentUser;
+                      result.delete();
+                      userC.doc(widget.uid).delete();
+                      userI.doc(widget.uid).delete();
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => MyHomePage()));
+
+                    }catch(e){
+                      print('not deleted');
+                    }
+
                   },
                   child: Text("Delete Account",style: TextStyle(color: Colors.white))
               ),
