@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_final_project/Views/home_map.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 
 class MyHomePage3 extends StatefulWidget {
-  MyHomePage3({Key key, this.title}) : super(key: key);
+  MyHomePage3({Key key, this.title,this.uid}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -18,6 +19,7 @@ class MyHomePage3 extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
+  String uid;
   final String title;
 
   @override
@@ -25,6 +27,22 @@ class MyHomePage3 extends StatefulWidget {
 }
 
 class _MyHomePage3State extends State<MyHomePage3> {
+
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    _displayInfo(){
+      String tempFirst;
+      String tempLast;
+      String tempEmail;
+
+      FirebaseFirestore.instance.collection("users").doc(widget.uid).get().then((value){
+          tempFirst = value.data()["firstName"];
+          tempLast = value.data()["lastName"];
+          tempEmail = value.data()["email"];
+      });
+      return Text(
+      tempFirst.toString()
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +62,9 @@ class _MyHomePage3State extends State<MyHomePage3> {
               ),
             ),
             Container(color: Colors.transparent,height: 100),
+            Container(
+              child: _displayInfo(),
+              ),
             SizedBox(
               width: 250,
               child:  RaisedButton(
@@ -51,7 +72,9 @@ class _MyHomePage3State extends State<MyHomePage3> {
                       borderRadius: BorderRadius.circular(40)
                   ),
                   color: Colors.deepOrangeAccent,
-                  onPressed: () {  },
+                  onPressed: () {
+
+                  },
                   child: Text("Account Information",style: TextStyle(color: Colors.white))
               ),
             ),
@@ -73,12 +96,14 @@ class _MyHomePage3State extends State<MyHomePage3> {
                       borderRadius: BorderRadius.circular(40)
                   ),
                   color: Colors.deepOrangeAccent,
-                  onPressed: () {  },
+                  onPressed: () {
+                    FirebaseFirestore.instance.collection("users").doc(widget.uid).get().then((value){
+                      print(value.data()["firstName"]);
+                    });
+                  },
                   child: Text("Delete Account",style: TextStyle(color: Colors.white))
               ),
             )
-
-
           ],
         ),
       ),

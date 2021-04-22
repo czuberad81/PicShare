@@ -7,8 +7,9 @@ import 'package:mobile_final_project/Views/account.dart';
 
 
 class MyHomePage2 extends StatefulWidget {
-  MyHomePage2({Key key, this.title}) : super(key: key);
+  MyHomePage2({Key key, this.title,this.uid}) : super(key: key);
 
+  String uid;
   final String title;
 
   @override
@@ -37,7 +38,7 @@ class _MyHomePage2State extends State<MyHomePage2> {
           icon: Icon(Icons.account_circle_outlined,color: Colors.deepOrangeAccent,size: 30),
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(
-                builder: (context) => MyHomePage3()));
+                builder: (context) => MyHomePage3(uid:widget.uid)));
           },
         )
     );

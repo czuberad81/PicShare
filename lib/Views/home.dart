@@ -27,17 +27,18 @@ class MyHomePage1 extends StatefulWidget {
 
 class _MyHomePage1State extends State<MyHomePage1> {
   int _cIndex = 1;
-  final _optionW = [
-    MyHomePage4(),
-    MyHomePage2(),
-    Center(child: Text('Friends'))
-  ];
+  // final _optionW = [
+  //   MyHomePage4(),
+  //   MyHomePage2(),
+  //   Center(child: Text('Friends'))
+  // ];
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Center(
-        child:_optionW[_cIndex],
+        child:_widget(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _cIndex,
@@ -58,9 +59,17 @@ class _MyHomePage1State extends State<MyHomePage1> {
       ),
     );
   }
-  Widget screenDisplay(){
-
-  }
+ Widget _widget(){
+    if(_cIndex == 0){
+      return MyHomePage4();
+    }
+    else if(_cIndex == 1){
+      return MyHomePage2(uid:widget.uid);
+    }
+    else if(_cIndex == 2){
+      return Center(child: Text("friends"));
+    }
+ }
   // Widget _account(){
   //   return Align(
   //     alignment: FractionalOffset(0.0,0.05),
