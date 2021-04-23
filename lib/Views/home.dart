@@ -9,16 +9,6 @@ import 'package:mobile_final_project/Views/home_camera.dart';
 class MyHomePage1 extends StatefulWidget {
   MyHomePage1({Key key, this.title,  this.uid}) : super(key: key);
   String uid;
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -27,12 +17,6 @@ class MyHomePage1 extends StatefulWidget {
 
 class _MyHomePage1State extends State<MyHomePage1> {
   int _cIndex = 1;
-  // final _optionW = [
-  //   MyHomePage4(),
-  //   MyHomePage2(),
-  //   Center(child: Text('Friends'))
-  // ];
-
   @override
   Widget build(BuildContext context) {
 
@@ -70,30 +54,5 @@ class _MyHomePage1State extends State<MyHomePage1> {
       return Center(child: Text("friends"));
     }
  }
-  // Widget _account(){
-  //   return Align(
-  //     alignment: FractionalOffset(0.0,0.05),
-  //     child: IconButton(
-  //       icon: Icon(Icons.account_circle_outlined,color: Colors.deepOrangeAccent,size: 30),
-  //     )
-  //   );
-  // }
-  // Widget _map(BuildContext context){
-  //   Completer<GoogleMapController> _completer = Completer();
-  //   return Container(
-  //     height: MediaQuery.of(context).size.height,
-  //     width: MediaQuery.of(context).size.width,
-  //
-  //     child: GoogleMap(
-  //       mapType: MapType.terrain,
-  //       initialCameraPosition: CameraPosition(target:LatLng(43.661904723121374, -79.38172442298045),zoom: 10),
-  //       onMapCreated: (GoogleMapController controller){
-  //         controller.setMapStyle(mapS.styleMap);
-  //         _completer.complete(controller);
-  //       },
-  //     ),
-  //
-  //   );
-  // }
 }
 
